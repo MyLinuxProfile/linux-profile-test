@@ -1,5 +1,5 @@
 import typer
-from linux_profile.commands import Init
+from linux_profile.actions import Init
 
 app = typer.Typer(help="Awesome CLI prifile manager.")
 
