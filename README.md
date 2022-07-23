@@ -1,1 +1,1 @@
-# linux-profile-install-python
+# linux-profile-pypi
