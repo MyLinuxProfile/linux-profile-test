@@ -130,3 +130,8 @@ dmypy.json
 
 # Ignore dynaconf secret files
 .secrets.*
+
+# Secret files
+.hostnamectl
+.linuxprofile.ini
+.os-release
