@@ -8,7 +8,6 @@ app = typer.Typer(help="Awesome CLI prifile manager.")
 @app.command()
 def init(user: str, token: str):
     start = Init(user, token)
-    start.add_user()
     print(__logo__)
     print("My Linux Profile: v" + str(__version__))
     print("Docs: https://github.com/MyLinuxProfile/linux-profile-pypi/")
