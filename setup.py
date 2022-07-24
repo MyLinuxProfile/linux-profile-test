@@ -1,15 +1,12 @@
+import linux_profile
+
 from setuptools import find_packages
 from setuptools import setup
-import linux_profile
 
 version = linux_profile.__version__
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
-
-# requirements = [
-#     'typer'
-# ]
 
 test_requirements = [
     "pytest"
@@ -30,7 +27,6 @@ setup(
             "tests"
         ]
     ),
-    # install_requires=requirements,
     tests_require=test_requirements,
     include_package_data=True,
     zip_safe=False,
