@@ -30,10 +30,13 @@ class BaseAction(object):
     def setup(self):
         """Initial setup
         """
-        self.system = get_system()
-        self.distro = get_distro()
-        self.add_config()
-        self.connect_user()
+        try:
+            self.system = get_system()
+            self.distro = get_distro()
+            self.add_config()
+
+        except Exception as error:
+            raise ValueError("It is not possible to create the basic settings.")
 
     def add_config(self):
         """Add Config
