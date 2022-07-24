@@ -11,8 +11,7 @@ class Text(object):
     LOGO = _logo
     URL = _url
     SEPARATOR = chr(95)*42
-    HEADER = "[white]" + LOGO + "[/white]" + "\n" \
-        + NAME + ": " + VERSION + "\nDocs: " + URL
+    HEADER = "[white]" + LOGO + "\n" + NAME + ": " + VERSION + "[/white]\nDocs: " + URL
 
 
 def text_command(value: str = 'not found'):
@@ -20,3 +19,10 @@ def text_command(value: str = 'not found'):
     """
     print(Text.SEPARATOR)
     print("[bold white]Command: " + value + "[/bold white]")
+
+
+def text_error(value: str):
+    """Text error
+    """
+    print("[bold red]Error: [/bold red]" + value)
+
