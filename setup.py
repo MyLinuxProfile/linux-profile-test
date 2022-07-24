@@ -1,4 +1,5 @@
-import setuptools
+from setuptools import find_packages
+from setuptools import setup
 import linux_profile
 
 version = linux_profile.__version__
@@ -6,7 +7,15 @@ version = linux_profile.__version__
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-setuptools.setup(
+# requirements = [
+#     'typer'
+# ]
+
+test_requirements = [
+    "pytest"
+]
+
+setup(
     name="linux-profile",
     version=version,
     author="Fernando Celmer",
@@ -16,21 +25,23 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/MyLinuxProfile/linux-profile-pypi",
     license="MIT",
-    packages=[
-        'linux_profile',
-    ],
+    packages=find_packages(
+        exclude=[
+            "tests"
+        ]
+    ),
+    # install_requires=requirements,
+    tests_require=test_requirements,
     include_package_data=True,
+    zip_safe=False,
+    platforms="linux",
+    python_requires=">=3.9",
+    setup_requires=["setuptools >= 40.8.0"],
     classifiers=[
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License",
         'Intended Audience :: Developers',
         'Natural Language :: English',
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
-    ],
-    python_requires=">=3.6",
-    zip_safe=False,
-    platforms="linux"
+    ]
 )
