@@ -9,19 +9,40 @@ from linux_profile.utils import (
 
 
 class Init(object):
-    """
-    Start of settings
+    """Start of settings
     """
 
     def __init__(self, user: str, token: str):
-        self.system = get_system()
-        self.distro = get_distro()
+        """
+        Constructor
+
+        Parameters
+        ----------
+        user : str
+            Username
+        token: str
+            User access token
+
+        Returns
+        -------
+        No return
+        """
+
         self.user = user
         self.token = token
 
-    def add_user(self):
+        self.run()
+
+    def run(self):
+        """Run
         """
-        Add User
+        self.system = get_system()
+        self.distro = get_distro()
+        self.add_config()
+
+
+    def add_config(self):
+        """Add Config
         """
         config = configparser.ConfigParser()
 
@@ -34,5 +55,13 @@ class Init(object):
 
         write_file(path_file=FILE_CONF, config=config)
 
+
+    def connect_user(self):
+        """Connect User
+        """
+        pass
+
+
     def add_profile(profile_id: str):
         pass
+
