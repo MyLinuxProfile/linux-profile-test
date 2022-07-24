@@ -9,6 +9,7 @@ def init(user: str, token: str):
     start = Init(user, token)
     start.add_user()
 
+
 @app.command()
 def sync():
     print("sync")
