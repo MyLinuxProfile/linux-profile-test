@@ -1,0 +1,146 @@
+import json
+
+from requests import request, HTTPError
+from linux_profile.config import URL_API
+
+
+class BaseRequest(object):
+    """Base class request
+    """
+
+    def __init__(self) -> None:
+        """Construct
+        """
+        self.path = URL_API
+        self.setup()
+
+    def url(self):
+        """Url
+        """
+        self.url = None
+
+    def header(self):
+        """Header
+        """
+        self.header = {
+            'Content-Type': 'application/json'
+        }
+
+    def setup(self):
+        """Initial setup
+        """
+        try:
+            self.url()
+            self.header()
+
+        except Exception as error:
+            print(error)
+            raise ValueError("Unable to mount the request.")
+
+    def make_request(self,
+                     method: str,
+                     params: dict = {},
+                     payload: dict = {},
+                     header: dict = None,
+                     url: str = None) -> str:
+        """Make Request
+        """
+        payload = json.dumps(payload)
+
+        kwargs = {
+            'method': method,
+            'params': params,
+            'data': payload,
+            'headers': header or self.header,
+            'url': url or self.url
+        }
+
+        with request(**kwargs) as response:
+            try:
+                response.raise_for_status()
+
+            except HTTPError as error:
+                print(error)
+                raise ValueError("Failed to make the request")
+
+            return response.text
+
+    def make_get(self,
+                 params: dict,
+                 url: str = None) -> json:
+        """Make GET
+        """
+        result = self.make_request(
+            method='GET',
+            params=params,
+            url=url
+        )
+
+        if result:
+            try:
+                result_json = json.loads(result)
+            except:
+                return json.loads({})
+
+            return result_json
+
+    def make_post(self,
+                  payload: dict,
+                  header: dict = None,
+                  url: str = None) -> json:
+        """Make POST
+        """
+        result = self.make_request(
+            method='POST',
+            header=header,
+            payload=payload,
+            url=url,
+        )
+
+        if result:
+            try:
+                result_json = json.loads(result)
+            except:
+                return json.loads({})
+
+            return result_json
+
+    def make_put(self,
+                 payload: dict,
+                 header: dict = None,
+                 url: str = None) -> json:
+        """Make PUT
+        """
+        result = self.make_request(
+            method='PUT',
+            header=header,
+            payload=payload,
+            url=url,
+        )
+
+        if result:
+            try:
+                result_json = json.loads(result)
+            except:
+                return json.loads({})
+
+            return result_json
+
+    def make_delete(self,
+                    header: dict = None,
+                    url: str = None) -> json:
+        """Make DELETE
+        """
+        result = self.make_request(
+            method='DELETE',
+            header=header,
+            url=url,
+        )
+
+        if result:
+            try:
+                result_json = json.loads(result)
+            except:
+                return json.loads({})
+
+            return result_json
