@@ -42,7 +42,7 @@ class BaseRequest(object):
                      params: dict = {},
                      payload: dict = {},
                      header: dict = None,
-                     url: str = None) -> str:
+                     url: str = None) -> request:
         """Make Request
         """
         payload = json.dumps(payload)
@@ -63,11 +63,11 @@ class BaseRequest(object):
                 print(error)
                 raise ValueError("Failed to make the request")
 
-            return response.text
+            return response
 
     def make_get(self,
-                 params: dict,
-                 url: str = None) -> json:
+                 params: dict = {},
+                 url: str = None) -> request:
         """Make GET
         """
         result = self.make_request(
@@ -76,18 +76,12 @@ class BaseRequest(object):
             url=url
         )
 
-        if result:
-            try:
-                result_json = json.loads(result)
-            except:
-                return json.loads({})
-
-            return result_json
+        return result
 
     def make_post(self,
                   payload: dict,
                   header: dict = None,
-                  url: str = None) -> json:
+                  url: str = None) -> request:
         """Make POST
         """
         result = self.make_request(
@@ -97,18 +91,12 @@ class BaseRequest(object):
             url=url,
         )
 
-        if result:
-            try:
-                result_json = json.loads(result)
-            except:
-                return json.loads({})
-
-            return result_json
+        return result
 
     def make_put(self,
                  payload: dict,
                  header: dict = None,
-                 url: str = None) -> json:
+                 url: str = None) -> request:
         """Make PUT
         """
         result = self.make_request(
@@ -118,17 +106,11 @@ class BaseRequest(object):
             url=url,
         )
 
-        if result:
-            try:
-                result_json = json.loads(result)
-            except:
-                return json.loads({})
-
-            return result_json
+        return result
 
     def make_delete(self,
                     header: dict = None,
-                    url: str = None) -> json:
+                    url: str = None) -> request:
         """Make DELETE
         """
         result = self.make_request(
@@ -137,10 +119,4 @@ class BaseRequest(object):
             url=url,
         )
 
-        if result:
-            try:
-                result_json = json.loads(result)
-            except:
-                return json.loads({})
-
-            return result_json
+        return result
