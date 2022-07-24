@@ -2,7 +2,11 @@ import typer
 
 from rich import print
 from linux_profile.actions import Init
-from linux_profile.utils.text import Text, text_command
+from linux_profile.utils.text import (
+    Text,
+    text_command,
+    text_error
+)
 
 app = typer.Typer(help="Awesome CLI prifile manager.")
 
@@ -14,9 +18,9 @@ def init(user: str, token: str):
 
     try:
         start = Init(user=user, token=token)
-    except Exception as error:
-        print("Error")
 
+    except Exception as error:
+        text_error(value=error.args[0])
 
 @app.command()
 def sync_pull():
