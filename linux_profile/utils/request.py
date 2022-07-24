@@ -1,10 +1,11 @@
 import json
 
 from requests import request, HTTPError
+from linux_profile.base import BaseProfile
 from linux_profile.config import URL_API
 
 
-class BaseRequest(object):
+class BaseRequest(BaseProfile):
     """Base class request
     """
 
@@ -12,17 +13,20 @@ class BaseRequest(object):
         """Construct
         """
         self.path = URL_API
+        self.load_config()
         self.setup()
 
     def url(self):
         """Url
         """
-        self.url = None
+        self.url = self.path
 
     def header(self):
         """Header
         """
         self.header = {
+            'x-token': self.user.get('token'),
+            'email': self.user.get('email'),
             'Content-Type': 'application/json'
         }
 
