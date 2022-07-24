@@ -48,9 +48,3 @@ class BaseAction(object):
             }
 
         write_file(path_file=FILE_CONF, config=config)
-
-    def connect_user(self):
-        """Connect User
-        """
-        raise("Ops")
-
