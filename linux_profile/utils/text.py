@@ -14,11 +14,12 @@ class Text(object):
     HEADER = "[white]" + LOGO + "\n" + NAME + ": " + VERSION + "[/white]\nDocs: " + URL
 
 
-def text_command(value: str = 'not found'):
+def text_command(value: str = 'not found', desc: str = ''):
     """Text command
     """
-    print(Text.SEPARATOR)
-    print("[bold white]Command: " + value + "[/bold white]")
+    if desc:
+        desc = '--' + desc
+    print("[bold white]Command: " + value + "[/bold white] " + desc)
 
 
 def text_error(value: str):
