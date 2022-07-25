@@ -16,7 +16,6 @@ def init(email: str, token: str):
     print(Text.HEADER)
     print(Text.SEPARATOR)
     text_command(value="init", desc="Initial setup of your profile files")
-
     try:
         start = Init(email=email, token=token)
         start.connect_user()
