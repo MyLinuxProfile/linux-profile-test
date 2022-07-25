@@ -8,7 +8,7 @@ class BaseProfile(object):
     """BaseProfile class that defines how actions work
     """
 
-    def __init__(self, email: str, token: str) -> None:
+    def __init__(self, email: str = None, token: str = None) -> None:
         """Construct the actions for profile
 
         Parameters
