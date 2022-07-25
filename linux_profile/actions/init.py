@@ -43,15 +43,17 @@ class OpetionGeral(object):
 
         if input_option_action == '1':
             self.view_profile_list()
-            print("• CONTINUE? yes/no")
 
-            input_option_action = input()
-            while input_option_action not in ['yes', 'no']:
-                print('I NEED CONFIRMATION. yes/no?')
+            if self.profiles:
+                print("• CONTINUE? yes/no")
+
                 input_option_action = input()
+                while input_option_action not in ['yes', 'no']:
+                    print('• I NEED CONFIRMATION. yes/no?')
+                    input_option_action = input()
 
-            if input_option_action == 'yes':
-                self.option_setup()
+                if input_option_action == 'yes':
+                    self.option_setup()
 
         if input_option_action == '2':
             self.select_profile()
@@ -67,6 +69,17 @@ class OpetionGeral(object):
                 table.add_row(str(item['id']), item['profile_id'])
 
             console.print(table)
+        
+        else:
+            print("• NO PROFILES. WANT TO CREATE ONE NOW? yes/no")
+            input_option_action = input()
+
+            while input_option_action not in ['yes', 'no']:
+                print('• I NEED CONFIRMATION. yes/no?')
+                input_option_action = input()
+
+            if input_option_action == 'yes':
+                self.register_new_profile()
 
     def select_profile(self):
         print('WHICH PROFILE DO YOU WANT TO SET?')
@@ -74,6 +87,7 @@ class OpetionGeral(object):
 
     def register_new_profile(self):
         pass
+
 
 class InitRequest(BaseRequest):
 
