@@ -5,8 +5,7 @@ from linux_profile.config import FILE_DISTRO, FILE_SYSTEM
 
 
 def get_content(path_file: str, separator: str):
-    """
-    Get the contents of a file.
+    """Get the contents of a file.
 
     Parameters
     ----------
@@ -20,7 +19,6 @@ def get_content(path_file: str, separator: str):
     dict
         Dictionary with file contents.
     """
-
     my_info = dict()
 
     file_list = path_file.replace(' ', '|').replace('\n', ' ').split()
@@ -42,67 +40,36 @@ def get_content(path_file: str, separator: str):
     return my_info
 
 
-def get_system():
-    """
-    Get System Information
+def read_file(path_file: str, type_file: str = '') -> str:
+    with open(path_file + type_file, 'r', encoding='utf8') as content:
+        content = content.read()
+    return content
+
+
+def write_file(path_file: str, data: str, type_file: str = ''):
+    with open(path_file + type_file, 'w') as content:
+        content.write(data)
+
+
+def read_file_ini():
+    """Read File
 
     Parameters
     ----------
-    No parameters
+    None
+        No parameters
 
     Returns
     -------
-    dict
-        Dictionary with contents of the .hostnamectl file.
-    """
-    system('hostnamectl > ' + FILE_SYSTEM)
-
-    with open(FILE_SYSTEM, 'r', encoding='utf8') as file_system:
-        file_system = file_system.read()
-
-    return get_content(path_file=file_system, separator=":")
-
-
-def get_distro():
-    """
-    Get Linux distribution
-
-    Parameters
-    ----------
-    No parameters
-
-    Returns
-    -------
-    dict
-        Dictionary with contents of the .os-release file.
-    """
-    system("cat /etc/os-release > " + FILE_DISTRO)
-
-    with open(FILE_DISTRO, 'r', encoding='utf8') as file_distro:
-        file_distro = file_distro.read()
-
-    return get_content(path_file=file_distro, separator="=")
-
-
-def read_file():
-    """
-    Read File
-
-    Parameters
-    ----------
-    No parameters
-
-    Returns
-    -------
-    Instance of ConfigParser class
+    ConfigParser
+        Instance of ConfigParser class
     """
     config = configparser.ConfigParser()
     return config.sections()
 
 
-def write_file(path_file: str, config: configparser):
-    """
-    Write File
+def write_file_ini(path_file: str, config: configparser):
+    """Write File
 
     Parameters
     ----------
@@ -113,9 +80,46 @@ def write_file(path_file: str, config: configparser):
 
     Returns
     -------
-    No return
+    None
+        No return
     """
+    with open(path_file, 'w') as config_file:
+        config.write(config_file)
 
-    with open(path_file, 'w') as configfile:
-        config.write(configfile)
 
+def get_system() -> dict:
+    """Get System Information
+
+    Parameters
+    ----------
+    None
+        No parameters
+
+    Returns
+    -------
+    dict
+        Dictionary with contents of the .hostnamectl file.
+    """
+    system('hostnamectl > ' + FILE_SYSTEM)
+    file_system = read_file(path_file=FILE_SYSTEM)
+
+    return get_content(path_file=file_system, separator=":")
+
+
+def get_distro() -> dict:
+    """Get Linux distribution
+
+    Parameters
+    ----------
+    None
+        No parameters
+
+    Returns
+    -------
+    dict
+        Dictionary with contents of the .os-release file.
+    """
+    system("cat /etc/os-release > " + FILE_DISTRO)
+    file_distro = read_file(path_file=FILE_DISTRO)
+
+    return get_content(path_file=file_distro, separator="=")

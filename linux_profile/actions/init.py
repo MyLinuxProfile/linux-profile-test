@@ -7,8 +7,6 @@ from rich.table import Table
 class Init(BaseProfile):
     """Start of settings
     """
-    def __init__(self, email: str, token: str):
-        super().__init__(email, token)
 
     def connect_user(self):
         """Connect User
@@ -18,7 +16,10 @@ class Init(BaseProfile):
 
         if response.status_code == 200:
             text_command(value="Connect", desc="Server connection to get profiles.")
-            OpetionGeral(profiles=response.json())
+            self.add_profile(profiles=response.json())
+            self.load_profile()
+
+            # OpetionGeral(profiles=self.profiles)
 
 
 class OpetionGeral(object):

@@ -8,6 +8,7 @@ class Pull(BaseProfile):
         """
         try:
             self.load_config()
+            self.load_profile()
         except Exception as error:
             print(error)
             raise ValueError("It is not possible to load the basic settings.")

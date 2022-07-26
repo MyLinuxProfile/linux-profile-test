@@ -1,7 +1,11 @@
 import configparser
 
-from linux_profile.config import FILE_CONF
-from linux_profile.utils.file import get_system, get_distro, write_file
+from os import mkdir
+from os.path import exists
+
+from typing import List
+from linux_profile.config import FILE_CONFIG, FILE_PROFILE, FOLDER_CONFIG, FOLDER_PROFILE
+from linux_profile.utils.file import get_system, get_distro, write_file_ini, write_file
 
 
 class BaseProfile(object):
@@ -22,6 +26,15 @@ class BaseProfile(object):
         -------
         No return
         """
+        if not exists(FOLDER_CONFIG):
+            mkdir(FOLDER_CONFIG)
+
+        if not exists(FOLDER_PROFILE):
+            mkdir(FOLDER_PROFILE)
+
+        self.system = None
+        self.distro = None
+        self.profiles = []
         self.user = {
             'email': email,
             'token': token
@@ -50,21 +63,50 @@ class BaseProfile(object):
         config['DISTRO'] = self.distro
         config['USER'] = self.user
 
-        write_file(path_file=FILE_CONF, config=config)
+        write_file_ini(path_file=FILE_CONFIG, config=config)
 
     def load_config(self) -> None:
         """Load Config
         """
         config = configparser.ConfigParser()
-        config.read(FILE_CONF)
+        config.read(FILE_CONFIG)
         
         self.distro = None
         self.system = None
         self.user = None
 
         for section in config.sections():
-            setattr(self, section.lower(), {}) 
+            setattr(self, section.lower(), {})
 
             for key, val in config.items(section):
                 new_config = getattr(self, section.lower())
                 new_config.update({key: val})
+
+    def add_profile(self, profiles: List) -> None:
+        """Add Profile
+        """
+        config = configparser.ConfigParser()
+
+        for item in profiles:
+            config['PROFILE_' + str(item['id'])] = item
+
+        write_file_ini(path_file=FILE_PROFILE, config=config)
+
+    def load_profile(self) -> None:
+        """Load Profile
+        """
+        config = configparser.ConfigParser()
+        config.read(FILE_PROFILE)
+        
+        self.profiles = []
+
+        for section in config.sections():
+            setattr(self, section.lower(), {})
+
+            my_dict = {}
+            for key, val in config.items(section):
+                if section.find('PROFILE_') >= 0:
+                    my_dict.update({key: val})
+
+            if my_dict:
+                self.profiles.append(my_dict)
