@@ -1,9 +1,5 @@
-from os import getenv
-from dotenv import load_dotenv
+URL_API = 'https://app-linux-profile-api.herokuapp.com/v1/'
 
-load_dotenv()
-
-URL_API = getenv("URL_API")
 FOLDER_CONFIG = '.config'
 FOLDER_PROFILE = '.config/profiles'
 
