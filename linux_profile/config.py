@@ -1,4 +1,4 @@
-URL_API = 'https://app-linux-profile-api.herokuapp.com/v1/'
+URL_API = 'http://api.linuxprofile.com/v1/'
 
 FOLDER_CONFIG = '.config'
 FOLDER_PROFILE = '.config/profiles'
