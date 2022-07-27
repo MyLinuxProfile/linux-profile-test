@@ -25,31 +25,25 @@ def init(email: str, token: str):
 
 
 @app.command()
-def sync_pull():
-    text_command(value="sync-pull")
+def sync_pull(param: str):
     try:
-        start = Pull()
-        start.test()
+        Pull(param=param)
     except Exception as error:
         text_error(value=error.args[0])
 
 
 @app.command()
-def sync_push():
-    text_command(value="sync-push")
+def sync_push(param: str):
     try:
-        start = Push()
-        start.test()
+        Push(param=param)
     except Exception as error:
         text_error(value=error.args[0])
 
 
 @app.command()
-def sync_commit():
-    text_command(value="sync-commit")
+def sync_commit(param: str):
     try:
-        start = Commit()
-        start.test()
+        Commit(param=param)
     except Exception as error:
         text_error(value=error.args[0])
 
