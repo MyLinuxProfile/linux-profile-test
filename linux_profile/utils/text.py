@@ -17,8 +17,7 @@ class Text(object):
 def text_command(value: str = 'not found', desc: str = ''):
     """Text command
     """
-    if desc:
-        desc = '--' + desc
+    desc = '--' + desc if desc else ''
     print("[bold white]Command: " + value + "[/bold white] " + desc)
 
 
