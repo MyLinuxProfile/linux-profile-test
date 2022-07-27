@@ -4,8 +4,17 @@ from os import mkdir
 from os.path import exists
 
 from typing import List
-from linux_profile.config import FILE_CONFIG, FILE_PROFILE, FOLDER_CONFIG, FOLDER_PROFILE
-from linux_profile.utils.file import get_system, get_distro, write_file_ini, write_file
+from linux_profile.config import (
+    FILE_CONFIG,
+    FILE_PROFILE,
+    FOLDER_CONFIG,
+    FOLDER_PROFILE
+)
+from linux_profile.utils.file import (
+    get_system,
+    get_distro,
+    write_file_ini
+)
 
 
 class BaseProfile(object):
