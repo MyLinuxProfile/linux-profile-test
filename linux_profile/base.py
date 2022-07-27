@@ -12,7 +12,7 @@ class BaseProfile(object):
     """BaseProfile class that defines how actions work
     """
 
-    def __init__(self, email: str = None, token: str = None) -> None:
+    def __init__(self, email: str = None, token: str = None, param: str = None) -> None:
         """Construct the actions for profile
 
         Parameters
@@ -21,6 +21,8 @@ class BaseProfile(object):
             E-mail
         token: str
             User access token
+        param: str
+            Params
 
         Returns
         -------
@@ -32,13 +34,13 @@ class BaseProfile(object):
         if not exists(FOLDER_PROFILE):
             mkdir(FOLDER_PROFILE)
 
-        self.system = None
-        self.distro = None
+        self.email = email
+        self.token = token
+        self.param = param
+        self.system = {}
+        self.distro = {}
+        self.user = {}
         self.profiles = []
-        self.user = {
-            'email': email,
-            'token': token
-        }
 
         self.setup()
 
@@ -61,7 +63,10 @@ class BaseProfile(object):
 
         config['SYSTEM'] = self.system
         config['DISTRO'] = self.distro
-        config['USER'] = self.user
+        config['USER'] = {
+            'email': self.email,
+            'token': self.token
+        }
 
         write_file_ini(path_file=FILE_CONFIG, config=config)
 
