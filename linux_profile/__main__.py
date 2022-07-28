@@ -1,7 +1,7 @@
 import typer
 
 from rich import print
-from linux_profile.actions import Init, Push, Pull, Commit
+from linux_profile.actions import Init, Push, Pull, Commit, Apply
 from linux_profile.utils.text import (
     Text,
     text_command,
@@ -44,6 +44,14 @@ def sync_push(param: str):
 def sync_commit(param: str):
     try:
         Commit(param=param)
+    except Exception as error:
+        text_error(value=error.args[0])
+
+
+@app.command()
+def apply(param: str):
+    try:
+        Apply(param=param)
     except Exception as error:
         text_error(value=error.args[0])
 
