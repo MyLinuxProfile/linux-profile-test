@@ -35,6 +35,9 @@ class Pull(BaseProfile):
 
                     print(response.json())
 
+        else:
+            print("• You don't have profiles!")
+
 
 class InitRequest(BaseRequest):
 

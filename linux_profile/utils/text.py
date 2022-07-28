@@ -1,4 +1,7 @@
 from rich import print
+from rich.console import Console
+from rich.table import Table
+from typing import List
 from linux_profile import __version__, _name, _url, _logo
 
 
@@ -26,3 +29,17 @@ def text_error(value: str):
     """
     print("[bold red]Error: [/bold red]" + value)
 
+def table_options(question: str, first_column: str, options: List):
+    """Table Options
+    """
+    console = Console()
+    print('')
+    print('• ' + question)
+    option_action = Table(show_header=True, header_style="white")
+    option_action.add_column("#")
+    option_action.add_column(first_column)
+
+    for index, item in enumerate(options):
+        option_action.add_row(str(index+1), item)
+
+    console.print(option_action)

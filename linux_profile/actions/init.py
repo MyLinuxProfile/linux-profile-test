@@ -1,6 +1,6 @@
 from linux_profile.base import BaseProfile
 from linux_profile.utils.request import BaseRequest
-from linux_profile.utils.text import text_command
+from linux_profile.utils.text import text_command, table_options
 from rich.console import Console
 from rich.table import Table
 
@@ -29,24 +29,23 @@ class OpetionGeral(object):
         self.option_setup()
 
     def option_setup(self):
-        console = Console()
-        print("")
-        print("• SELECT AN OPTION FROM THE LIST:")
-        option_action = Table(show_header=True, header_style="white")
-        option_action.add_column("#")
-        option_action.add_column("Decription")
-        option_action.add_row(str(1), 'View profile list')
-        option_action.add_row(str(2), 'Select Profile')
-        option_action.add_row(str(3), 'Register new profile')
-        option_action.add_row(str(4), 'Exit')
-        console.print(option_action)
+        table_options(
+            question='Select an option from the list:',
+            options=[
+                'View profile list',
+                'Select Profile',
+                'Register new profile',
+                'Exit'
+            ],
+            first_column="Decription"
+        )
         input_option_action = input()
 
         if input_option_action == '1':
             self.view_profile_list()
 
             if self.profiles:
-                print("• CONTINUE? yes/no")
+                print("• Select Profile")
 
                 input_option_action = input()
                 while input_option_action not in ['yes', 'no']:
@@ -60,6 +59,8 @@ class OpetionGeral(object):
             self.select_profile()
 
     def view_profile_list(self):
+        """View Profile List
+        """
         if self.profiles:
             console = Console()
             table = Table(show_header=True, header_style="white")
