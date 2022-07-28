@@ -33,7 +33,7 @@ class OpetionGeral(object):
         print("")
         print("• SELECT AN OPTION FROM THE LIST:")
         option_action = Table(show_header=True, header_style="white")
-        option_action.add_column("Option")
+        option_action.add_column("#")
         option_action.add_column("Decription")
         option_action.add_row(str(1), 'View profile list')
         option_action.add_row(str(2), 'Select Profile')
@@ -63,11 +63,11 @@ class OpetionGeral(object):
         if self.profiles:
             console = Console()
             table = Table(show_header=True, header_style="white")
-            table.add_column("ID")
+            table.add_column("#")
             table.add_column("Profile")
 
-            for item in self.profiles:
-                table.add_row(str(item['id']), item['profile_id'])
+            for index, item in enumerate(self.profiles):
+                table.add_row(str(index+1), item['profile_id'])
 
             console.print(table)
         
