@@ -25,7 +25,7 @@ def init(email: str, token: str):
 
 
 @app.command()
-def sync_pull(param: str):
+def pull(param: str):
     try:
         Pull(param=param)
     except Exception as error:
@@ -33,7 +33,7 @@ def sync_pull(param: str):
 
 
 @app.command()
-def sync_push(param: str):
+def push(param: str):
     try:
         Push(param=param)
     except Exception as error:
@@ -41,7 +41,7 @@ def sync_push(param: str):
 
 
 @app.command()
-def sync_commit(param: str):
+def commit(param: str):
     try:
         Commit(param=param)
     except Exception as error:
