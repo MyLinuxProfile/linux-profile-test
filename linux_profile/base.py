@@ -102,6 +102,7 @@ class BaseProfile(object):
         config = configparser.ConfigParser()
 
         for item in profiles:
+            item.update({"standard": 0})
             config['PROFILE_' + str(item['id'])] = item
 
         write_file_ini(path_file=FILE_PROFILE, config=config)
