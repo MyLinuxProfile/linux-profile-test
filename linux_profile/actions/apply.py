@@ -8,18 +8,18 @@ class Apply(BaseProfile):
     def setup(self) -> None:
         """Initial setup
         """
-        if self.param not in ['all']:
-            raise Exception("Invalid parameter: " + self.param + " not exist!")
-
-        text_command(value='apply ' + self.param)
-        getattr(self, 'param_'+self.param)()
-
         try:
             self.load_config()
             self.load_profile()
         except Exception as error:
             print(error)
             raise Exception("It is not possible to load the basic settings.")
+
+        if self.param not in ['all']:
+            raise Exception("Invalid parameter: " + self.param + " not exist!")
+
+        text_command(value='apply ' + self.param)
+        getattr(self, 'param_'+self.param)()
 
     def param_all(self):
         """Param All
