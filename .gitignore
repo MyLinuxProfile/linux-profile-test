@@ -136,3 +136,4 @@ dmypy.json
 .linuxprofile.ini
 .os-release
 .config
+.test
