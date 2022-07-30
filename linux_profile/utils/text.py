@@ -1,6 +1,9 @@
 from rich import print
 from rich.console import Console
 from rich.table import Table
+from rich.panel import Panel
+from rich.text import Text as _Text
+
 from typing import List
 from linux_profile import __version__, _name, _url, _logo
 
@@ -16,6 +19,11 @@ class Text(object):
     SEPARATOR = chr(95)*42
     HEADER = "[white]" + LOGO + "\n" + NAME + ": " + VERSION + "[/white]\nDocs: " + URL
 
+def text_question(value: str):
+    """Text Question
+    """
+    panel = Panel(_Text("• "+value, justify="left"))
+    print(panel)
 
 def text_command(value: str = 'not found', desc: str = ''):
     """Text command
@@ -23,6 +31,11 @@ def text_command(value: str = 'not found', desc: str = ''):
     desc = '--' + desc if desc else ''
     print("[bold white]Command: " + value + "[/bold white] " + desc)
 
+def text_info(value: str = 'not found', desc: str = ''):
+    """Text command
+    """
+    desc = '--' + desc if desc else ''
+    print("[bold blue]Info: " + "[/bold blue]" + desc)
 
 def text_error(value: str):
     """Text error
@@ -34,7 +47,7 @@ def table_options(question: str, first_column: str, options: List):
     """
     console = Console()
     print('')
-    print('• ' + question)
+    text_question(value=question)
     option_action = Table(show_header=True, header_style="white")
     option_action.add_column("#")
     option_action.add_column(first_column)
