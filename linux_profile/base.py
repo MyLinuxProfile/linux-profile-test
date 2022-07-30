@@ -59,7 +59,7 @@ class BaseProfile(object):
         """
         if self.param not in self.PARAM:
             raise Exception("Invalid parameter: " + self.param + " not exist!")
-        
+
         getattr(self, 'param_'+self.param)()
 
     def start(self) -> None:
@@ -96,7 +96,7 @@ class BaseProfile(object):
         """
         config = configparser.ConfigParser()
         config.read(FILE_CONFIG)
-        
+
         self.distro = None
         self.system = None
 
@@ -122,7 +122,7 @@ class BaseProfile(object):
         """
         config = configparser.ConfigParser()
         config.read(FILE_PROFILE)
-        
+
         self.profiles = []
 
         for section in config.sections():
