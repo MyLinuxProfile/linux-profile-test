@@ -12,14 +12,11 @@ app = typer.Typer(help="Awesome CLI prifile manager.")
 
 
 @app.command()
-def init(email: str, token: str):
+def init(param: str):
     print(Text.HEADER)
     print(Text.SEPARATOR)
-    text_command(value="init", desc="Initial setup of your profile files")
     try:
-        start = Init(email=email, token=token)
-        start.connect_user()
-
+        Init(param=param)
     except Exception as error:
         text_error(value=error.args[0])
 
