@@ -1,4 +1,4 @@
-# linux-profile-pypi
+# linux-profile
 
 ## Help
 
