@@ -1,8 +1,8 @@
 import json
 
 from requests import request, HTTPError
-from linux_profile.base import BaseProfile
-from linux_profile.config import URL_API
+from linuxpy.base import BaseProfile
+from linuxpy.config import URL_API
 
 
 class BaseRequest(BaseProfile):

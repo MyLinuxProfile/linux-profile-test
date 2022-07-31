@@ -1,7 +1,7 @@
 import email
 from os import path
-from linux_profile.base import BaseProfile
-from linux_profile.config import (
+from linuxpy.base import BaseProfile
+from linuxpy.config import (
     FOLDER_CONFIG,
     FOLDER_PROFILE,
     FILE_CONFIG,

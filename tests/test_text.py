@@ -1,4 +1,4 @@
-from linux_profile.utils.text import (
+from linuxpy.utils.text import (
     text_question,
     text_command,
     text_info,
