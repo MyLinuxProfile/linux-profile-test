@@ -25,8 +25,6 @@ class BaseRequest(BaseProfile):
         """Header
         """
         self.header = {
-            'x-token': self.user.get('token'),
-            'email': self.user.get('email'),
             'Content-Type': 'application/json'
         }
 
@@ -65,7 +63,7 @@ class BaseRequest(BaseProfile):
 
             except HTTPError as error:
                 print(error)
-                raise ValueError("Failed to make the request")
+                # raise ValueError("Failed to make the request")
 
             return response
 
