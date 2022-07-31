@@ -12,7 +12,7 @@ class Init(BaseProfile):
         """Param Login
         """
         text_command(value='init ' + self.param)
-        self.fake_login_user()
+        # TODO: fake_login_user()
 
         # TODO: setup_profile()
         # TODO: load_profile()
@@ -21,7 +21,7 @@ class Init(BaseProfile):
         """Param Create
         """
         text_command(value='init ' + self.param)
-        self.fake_create_user()
+        # TODO: fake_create_user()
 
         # TODO: setup_profile()
         # TODO: load_profile()
@@ -31,18 +31,12 @@ class Init(BaseProfile):
     def fake_login_user(self):
         """Fake
         """
-        print("E-mail:")
-        input_option = input()
-
-        print("Token:")
-        input_option = input()
-
+        pass
 
     def fake_create_user(self):
         """Fake
         """
-        print("E-mail:")
-        input_option = input()
+        pass
 
     def fake_list_profile(self):
         """Fake

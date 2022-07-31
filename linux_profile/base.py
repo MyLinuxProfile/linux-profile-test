@@ -23,7 +23,10 @@ class BaseProfile(object):
     """
     PARAM = ['all']
 
-    def __init__(self, param: str = None) -> None:
+    def __init__(self, 
+                 email: str = None, 
+                 token: str = None, 
+                 param: str = None) -> None:
         """Construct the actions for profile
 
         Parameters
@@ -37,6 +40,8 @@ class BaseProfile(object):
         """
         text_command(value="init", desc="Initial setup of your profile files")
 
+        self.email = email
+        self.token = token
         self.param = param
         self.system = {}
         self.distro = {}
