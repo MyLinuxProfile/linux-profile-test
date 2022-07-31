@@ -53,6 +53,6 @@ def table_options(question: str, first_column: str, options: List):
     option_action.add_column(first_column)
 
     for index, item in enumerate(options):
-        option_action.add_row(str(index+1), item)
+        option_action.add_row(str(index+1), str(item))
 
     console.print(option_action)
