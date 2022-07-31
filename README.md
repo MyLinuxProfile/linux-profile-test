@@ -1,20 +1,20 @@
-# linuxpy
+# linux-profile
 
 # Help
 
 ## Commands
-| #      | Command                 | Param           |
-|--------|:------------------------|:----------------|
-| 01     | ``linuxpy init``        |                 |
-| 02     | ``linuxpy init-login``  |--email --token  |
-| 03     | ``linuxpy init-create`` |--token          |
-| 04     | ``linuxpy commit all``  |                 |
-| 05     | ``linuxpy pull all``    |                 |
-| 06     | ``linuxpy push all``    |                 |
-| 07     | ``linuxpy apply all``   |                 |
-| 08     | ``linuxpy help``        |                 |
-| 09     | ``linuxpy info system`` |                 |
-| 10     | ``linuxpy info distro`` |                 |
+| #      | Command                       | Param           |
+|--------|:------------------------------|:----------------|
+| 01     | ``linux_profile init``        |                 |
+| 02     | ``linux_profile init-login``  |--email --token  |
+| 03     | ``linux_profile init-create`` |--token          |
+| 04     | ``linux_profile commit all``  |                 |
+| 05     | ``linux_profile pull all``    |                 |
+| 06     | ``linux_profile push all``    |                 |
+| 07     | ``linux_profile apply all``   |                 |
+| 08     | ``linux_profile help``        |                 |
+| 09     | ``linux_profile info system`` |                 |
+| 10     | ``linux_profile info distro`` |                 |
 
 ## Description
 - 01 - Initial configuration of profile files and server connection.
