@@ -1,8 +1,8 @@
 import typer
 
 from rich import print
-from linuxp.actions import Init, Push, Pull, Commit, Apply
-from linuxp.utils.text import Text, text_error
+from linuxpy.actions import Init, Push, Pull, Commit, Apply
+from linuxpy.utils.text import Text, text_error
 
 app = typer.Typer(help="Awesome CLI prifile manager.")
 

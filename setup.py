@@ -1,9 +1,9 @@
-import linuxp
+import linuxpy
 
 from setuptools import find_packages
 from setuptools import setup
 
-version = linuxp.__version__
+version = linuxpy.__version__
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()

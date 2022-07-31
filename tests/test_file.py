@@ -1,8 +1,8 @@
 from json import loads
 
 from pytest import param
-from linuxp.base import BaseProfile
-from linuxp.utils.file import (
+from linuxpy.base import BaseProfile
+from linuxpy.utils.file import (
     get_distro,
     get_system,
     read_file

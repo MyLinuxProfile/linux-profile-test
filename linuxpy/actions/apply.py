@@ -1,8 +1,8 @@
-from linuxp.base import BaseProfile
-from linuxp.utils.text import text_command
+from linuxpy.base import BaseProfile
+from linuxpy.utils.text import text_command
 
 
-class Commit(BaseProfile):
+class Apply(BaseProfile):
     """Start of settings
     """
     def start(self) -> None:
@@ -18,4 +18,4 @@ class Commit(BaseProfile):
     def param_all(self):
         """Param All
         """
-        text_command(value='commit ' + self.param)
+        text_command(value='apply ' + self.param)

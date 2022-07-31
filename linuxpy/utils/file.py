@@ -1,7 +1,7 @@
 import configparser
 
 from os import system
-from linuxp.config import FILE_DISTRO, FILE_SYSTEM
+from linuxpy.config import FILE_DISTRO, FILE_SYSTEM
 
 
 def get_content(path_file: str, separator: str):

@@ -1,5 +1,5 @@
-from linuxp.base import BaseProfile
-from linuxp.utils.text import text_command, text_question
+from linuxpy.base import BaseProfile
+from linuxpy.utils.text import text_command, text_question
 
 
 class Init(BaseProfile):
