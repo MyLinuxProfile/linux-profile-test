@@ -40,11 +40,13 @@ class BaseProfile(object):
         """
         text_command(value="init", desc="Initial setup of your profile files")
 
-        self.email = email
-        self.token = token
         self.param = param
         self.system = {}
         self.distro = {}
+        self.user = {
+            "email": email,
+            "token": token
+        }
         self.profiles = []
 
         self.setup_folder()
@@ -94,6 +96,7 @@ class BaseProfile(object):
         config = configparser.ConfigParser()
         config['SYSTEM'] = get_system()
         config['DISTRO'] = get_distro()
+        config['USER'] = self.user
 
         write_file_ini(path_file=FILE_CONFIG, config=config)
 
@@ -105,6 +108,7 @@ class BaseProfile(object):
 
         self.distro = None
         self.system = None
+        self.user = None
 
         for section in config.sections():
             setattr(self, section.lower(), {})
