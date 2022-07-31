@@ -4,7 +4,7 @@
 
 | Command                                   | Description                                                                   |
 |:------------------------------------------|:------------------------------------------------------------------------------|
-| ``linux_profile init <email> <token>``    | Initial configuration of profile files and server connection.                 |
+| ``linux_profile init``                    | Initial configuration of profile files and server connection.                 |
 | ``linux_profile init login``              |                                                                               |
 | ``linux_profile init create``             |                                                                               |
 | ``linux_profile commit all``              | Saves the current computer settings in the local configuration file.          |
