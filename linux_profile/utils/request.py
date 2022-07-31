@@ -25,6 +25,8 @@ class BaseRequest(BaseProfile):
         """Header
         """
         self.header = {
+            'email': self.user.get("email"),
+            'x-token': self.user.get("token"),
             'Content-Type': 'application/json'
         }
 
