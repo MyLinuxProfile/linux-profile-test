@@ -27,7 +27,7 @@ async def make_delete():
 
 
 def start():
-    system('nohup uvicorn tests.api:app --host 0.0.0.0 --reload &')
+    system('nohup uvicorn tests.utils.api:app --host 0.0.0.0 --reload &')
     sleep(5)
 
 
