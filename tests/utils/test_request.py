@@ -9,27 +9,26 @@ class Request(BaseRequest):
         """
         self.url = "http://0.0.0.0:8000/"
 
-
 start()
 request = Request()
 
 
-def test_meke_get():
+def _test_meke_get():
     response = request.make_get()
     assert response.status_code == 200
 
 
-def test_meke_post():
+def _test_meke_post():
     response = request.make_post(payload={})
     assert response.status_code == 201
 
 
-def test_meke_put():
+def _test_meke_put():
     response = request.make_put(payload={})
     assert response.status_code == 200
 
 
-def test_meke_delete():
+def _test_meke_delete():
     response = request.make_delete()
     assert response.status_code == 200
 
