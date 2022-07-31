@@ -1,5 +1,5 @@
 from linux_profile.base import BaseProfile
-from linux_profile.utils.text import text_command
+from linux_profile.utils.text import text_command, text_question
 
 
 class Init(BaseProfile):
@@ -12,7 +12,7 @@ class Init(BaseProfile):
         """Param Login
         """
         text_command(value='init ' + self.param)
-        # TODO: fake_login_user()
+        self.fake_login_user()
 
         # TODO: setup_profile()
         # TODO: load_profile()
@@ -21,7 +21,7 @@ class Init(BaseProfile):
         """Param Create
         """
         text_command(value='init ' + self.param)
-        # TODO: fake_create_user()
+        self.fake_create_user()
 
         # TODO: setup_profile()
         # TODO: load_profile()
@@ -29,15 +29,29 @@ class Init(BaseProfile):
     #####-----------FAKE------------#####
 
     def fake_login_user(self):
-        pass
+        """Fake
+        """
+        print("E-mail:")
+        input_option = input()
+
+        print("Token:")
+        input_option = input()
+
 
     def fake_create_user(self):
-        pass
+        """Fake
+        """
+        print("E-mail:")
+        input_option = input()
 
     def fake_list_profile(self):
+        """Fake
+        """
         pass
 
     def fake_set_profile(self):
+        """"Fake
+        """
         pass
 
     #####-----------FAKE------------#####
