@@ -13,6 +13,9 @@
 
 ## Description
 - 01 - Initial configuration of profile files and server connection.
+  - **Example**: 
+    - ``linux_profile init login --email email@linuxprofile.com --token WKB62dMYod``
+    - ``linux_profile init create --email email@linuxprofile.com``
 - 02 - Saves the current computer settings in the local configuration file.
 - 03 - It pulls all the settings from the cloud and saves it to the local settings.
 - 04 - Push all local settings to the cloud.
