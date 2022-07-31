@@ -1,5 +1,5 @@
 from tests.utils.api import start, stop
-from linux_profile.utils.request import BaseRequest
+from linuxp.utils.request import BaseRequest
 
 
 class Request(BaseRequest):

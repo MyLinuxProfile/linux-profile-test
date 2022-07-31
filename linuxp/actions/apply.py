@@ -1,5 +1,5 @@
-from linux_profile.base import BaseProfile
-from linux_profile.utils.text import text_command
+from linuxp.base import BaseProfile
+from linuxp.utils.text import text_command
 
 
 class Apply(BaseProfile):

@@ -1,8 +1,8 @@
-from linux_profile.base import BaseProfile
-from linux_profile.utils.text import text_command
+from linuxp.base import BaseProfile
+from linuxp.utils.text import text_command
 
 
-class Push(BaseProfile):
+class Pull(BaseProfile):
     """Start of settings
     """
     def start(self) -> None:
@@ -18,4 +18,4 @@ class Push(BaseProfile):
     def param_all(self):
         """Param All
         """
-        text_command(value='push ' + self.param)
+        text_command(value='pull ' + self.param)
