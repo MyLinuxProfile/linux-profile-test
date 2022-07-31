@@ -9,11 +9,11 @@ class Init(BaseProfile):
     PARAM = ['login', 'create']
 
     def param_login(self):
-        """Param All
+        """Param Login
         """
         text_command(value='init ' + self.param)
 
     def param_create(self):
-        """Param All
+        """Param Create
         """
         text_command(value='init ' + self.param)
