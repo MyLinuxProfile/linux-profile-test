@@ -14,11 +14,17 @@ class Init(BaseProfile):
         text_command(value='init ' + self.param)
         # TODO: fake_login_user()
 
+        # TODO: setup_profile()
+        # TODO: load_profile()
+
     def param_create(self):
         """Param Create
         """
         text_command(value='init ' + self.param)
         # TODO: fake_create_user()
+
+        # TODO: setup_profile()
+        # TODO: load_profile()
 
     #####-----------FAKE------------#####
 
