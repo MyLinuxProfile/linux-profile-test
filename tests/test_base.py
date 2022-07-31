@@ -1,3 +1,4 @@
+import email
 from os import path
 from linux_profile.base import BaseProfile
 from linux_profile.config import (
@@ -11,7 +12,12 @@ from linux_profile.config import (
 class Init(BaseProfile):
     """Start of settings
     """
-    def __init__(self, param: str = None) -> None:
+    def __init__(self, 
+                 email: str = None, 
+                 token: str = None, 
+                 param: str = None) -> None:
+        self.email = email
+        self.token = token
         self.param = param
         self.system = {}
         self.distro = {}
@@ -38,7 +44,7 @@ def test_setup():
         }
     ]
 
-    test = Init(param='all')
+    test = Init(param='all', email='test@linuxprofile.com', token='token')
     test.setup_folder()
 
     test.setup_config()
