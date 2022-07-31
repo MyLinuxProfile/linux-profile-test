@@ -46,28 +46,6 @@ def read_file(path_file: str, type_file: str = '') -> str:
     return content
 
 
-def write_file(path_file: str, data: str, type_file: str = ''):
-    with open(path_file + type_file, 'w') as content:
-        content.write(data)
-
-
-def read_file_ini():
-    """Read File
-
-    Parameters
-    ----------
-    None
-        No parameters
-
-    Returns
-    -------
-    ConfigParser
-        Instance of ConfigParser class
-    """
-    config = configparser.ConfigParser()
-    return config.sections()
-
-
 def write_file_ini(path_file: str, config: configparser):
     """Write File
 
