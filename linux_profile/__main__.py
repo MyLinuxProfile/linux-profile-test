@@ -16,7 +16,27 @@ def init(
     print(Text.HEADER)
     print(Text.SEPARATOR)
     try:
-        Init(param=param, email=email, token= token)
+        Init(param=param, email=email, token=token)
+    except Exception as error:
+        text_error(value=error.args[0])
+
+
+@app.command()
+def init_login(email: str, token: str):
+    print(Text.HEADER)
+    print(Text.SEPARATOR)
+    try:
+        Init(email=email, token=token)
+    except Exception as error:
+        text_error(value=error.args[0])
+
+
+@app.command()
+def init_create(token: str):
+    print(Text.HEADER)
+    print(Text.SEPARATOR)
+    try:
+        Init(token=token)
     except Exception as error:
         text_error(value=error.args[0])
 
