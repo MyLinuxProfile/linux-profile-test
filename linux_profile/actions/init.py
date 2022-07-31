@@ -28,4 +28,10 @@ class Init(BaseProfile):
     def fake_create_user(self):
         pass
 
+    def fake_list_profile(self):
+        pass
+
+    def fake_set_profile(self):
+        pass
+
     #####-----------FAKE------------#####
