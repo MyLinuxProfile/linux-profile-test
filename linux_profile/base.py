@@ -62,10 +62,11 @@ class BaseProfile(object):
     def initial_commands(self) -> None:
         """Initial Commands
         """
-        if self.param not in self.PARAM:
-            raise Exception("Invalid parameter: " + self.param + " not exist!")
+        if self.param:
+            if self.param not in self.PARAM:
+                raise Exception("Invalid parameter: " + self.param + " not exist!")
 
-        getattr(self, 'param_'+self.param)()
+            getattr(self, 'param_'+self.param)()
 
     def start(self) -> None:
         """Start
