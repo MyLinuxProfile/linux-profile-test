@@ -2,11 +2,7 @@ import typer
 
 from rich import print
 from linux_profile.actions import Init, Push, Pull, Commit, Apply
-from linux_profile.utils.text import (
-    Text,
-    text_command,
-    text_error
-)
+from linux_profile.utils.text import Text, text_error
 
 app = typer.Typer(help="Awesome CLI prifile manager.")
 
