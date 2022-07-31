@@ -12,43 +12,39 @@ class Init(BaseProfile):
     def param_login(self):
         """Param Login
         """
+        text_command(value='init ' + self.param)
         self.login_user()
 
     def param_create(self):
         """Param Create
         """
         text_command(value='init ' + self.param)
-        # TODO: fake_create_user()
+        self.create_user()
 
     def login_user(self):
-        """Fake
+        """Login User
         """
         request = InitRequest()
         response = request.make_get()
 
         if response.status_code == 200:
-            text_command(value='init ' + self.param, desc="Server connection to get profiles.")
             self.setup_profile(profiles=response.json())
             self.load_profile()
 
-    #####-----------FAKE------------#####
-
-    def fake_create_user(self):
-        """Fake
+    def create_user(self):
+        """Create User
         """
         pass
 
-    def fake_list_profile(self):
-        """Fake
+    def list_profile(self):
+        """List Profile
         """
         pass
 
-    def fake_set_profile(self):
-        """"Fake
+    def set_profile(self):
+        """"Set Profile
         """
         pass
-
-    #####-----------FAKE------------#####
 
 
 class InitRequest(BaseRequest):
