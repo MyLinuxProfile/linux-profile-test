@@ -20,7 +20,7 @@
 - 03 - It pulls all the settings from the cloud and saves it to the local settings.
 - 04 - Push all local settings to the cloud.
 - 05 - Applies computer profile settings based on local information.
-- 09 - 
+- 06 - 
 - 07 - 
 - 08 - 
 
