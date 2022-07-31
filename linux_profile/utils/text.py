@@ -5,7 +5,7 @@ from rich.panel import Panel
 from rich.text import Text as _Text
 
 from typing import List
-from linuxpy import __version__, _name, _url, _logo
+from linux_profile import __version__, _name, _url, _logo
 
 
 class Text(object):

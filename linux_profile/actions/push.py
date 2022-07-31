@@ -1,5 +1,5 @@
-from linuxpy.base import BaseProfile
-from linuxpy.utils.text import text_command
+from linux_profile.base import BaseProfile
+from linux_profile.utils.text import text_command
 
 
 class Push(BaseProfile):

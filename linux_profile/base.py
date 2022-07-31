@@ -4,14 +4,14 @@ from os import mkdir
 from os.path import exists
 from typing import List
 
-from linuxpy.config import (
+from linux_profile.config import (
     FILE_CONFIG,
     FILE_PROFILE,
     FOLDER_CONFIG,
     FOLDER_PROFILE
 )
-from linuxpy.utils.text import text_command, text_error
-from linuxpy.utils.file import (
+from linux_profile.utils.text import text_command, text_error
+from linux_profile.utils.file import (
     get_system,
     get_distro,
     write_file_ini
