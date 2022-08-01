@@ -18,6 +18,8 @@ class BaseCommand(Config):
         """
         if self.param:
             if self.param not in self.PARAM:
-                raise Exception("Invalid parameter: " + self.param + " not exist!")
+                raise Exception(
+                    "Invalid parameter: " + self.param + " not exist!"
+                    )
 
             getattr(self, 'param_'+self.param)()
