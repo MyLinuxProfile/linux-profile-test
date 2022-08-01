@@ -1,4 +1,6 @@
 # linux-profile
+![GitHub](https://img.shields.io/github/license/MyLinuxProfile/linux-profile?style=flat-square)
+![GitHub last commit](https://img.shields.io/github/last-commit/MyLinuxProfile/linux-profile?style=flat-square)
 
 # Help
 
