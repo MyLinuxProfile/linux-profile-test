@@ -8,12 +8,12 @@ class BaseRequest(Config):
     """Base class request
     """
 
-    def __init__(self) -> None:
-        """Construct
+    def start(self):
+        """
         """
         self.path = URL_API
         self.load_config()
-        self.setup()
+        self.setup_request()
 
     def url(self):
         """Url
@@ -29,13 +29,12 @@ class BaseRequest(Config):
             'Content-Type': 'application/json'
         }
 
-    def setup(self):
+    def setup_request(self):
         """Initial setup
         """
         try:
             self.url()
             self.header()
-
         except Exception as error:
             print(error)
             raise ValueError("Unable to mount the request.")
