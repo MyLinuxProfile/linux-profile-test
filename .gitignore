@@ -132,9 +132,10 @@ dmypy.json
 .secrets.*
 
 # Secret files
-.hostnamectl
-.linuxprofile.ini
-.os-release
-.config
-.test
+*.hostnamectl
+*.linuxprofile.ini
+*.os-release
+
+# Secret folders
 *.config
+*.test
