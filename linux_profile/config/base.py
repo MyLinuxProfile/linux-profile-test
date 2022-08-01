@@ -1,77 +1,68 @@
+import logging
 import configparser
 
 from os import mkdir
 from os.path import exists
 from typing import List
 
+from linux_profile.utils.file import get_system, get_distro, write_file_ini
 from linux_profile.config import (
     FILE_CONFIG,
     FILE_PROFILE,
     FOLDER_CONFIG,
     FOLDER_PROFILE
 )
-from linux_profile.utils.text import text_command, text_error
-from linux_profile.utils.file import (
-    get_system,
-    get_distro,
-    write_file_ini
-)
 
-class BaseConfig(object):
-    """BaseProfile class that defines config
+
+class ValidationError(Exception):
+    """Raised during the validation process of the config on errors.
     """
-    def __init__(self) -> None:
-        self.setup_config()
-
-    def setup_folder(self) -> None:
-        """Setup Folder
-        """
-        if not exists(FOLDER_CONFIG):
-            mkdir(FOLDER_CONFIG)
-
-        if not exists(FOLDER_PROFILE):
-            mkdir(FOLDER_PROFILE)
-
-    def setup_config(self):
-        self.setup_folder()
 
 
-class BaseProfile(object):
-    """BaseProfile class that defines how actions work
+class Config(object):
+    """Configuration
     """
-    PARAM = ['all']
 
-    def __init__(self, 
-                 email: str = None, 
-                 token: str = None, 
-                 param: str = None) -> None:
-        """Construct the actions for profile
+    log = logging.getLogger('.config/logs')
 
-        Parameters
-        ----------
-        param: str
-            Params
-
-        Returns
-        -------
-        No return
+    def __init__(self,
+                 email: str = None,
+                 token: str = None,
+                 param: str = None):
         """
-        text_command(value="init", desc="Initial setup of your profile files")
-
+        Structure that defines the main variables.
+        """
+        self.email = email
+        self.token = token
         self.param = param
-        self.system = {}
-        self.distro = {}
-        self.user = {
-            "email": email,
-            "token": token
-        }
+
+        self.system = dict()
+        self.distro = dict()
+        self.user = dict()
         self.profiles = []
 
-        self.setup_folder()
         self.setup()
 
-    def setup_folder(self) -> None:
-        """Setup Folder
+    def setup(self):
+        """
+        Set to basic settings
+        """
+        self.set_folder()
+        self.start()
+
+    def start(self):
+        """
+        Start to basic settings
+        """
+        self.add_config()
+        self.load_config()
+
+    def set_folder(self) -> None:
+        """
+        Setup Folder
+
+        Checks and creates the structure of configuration
+        folders that are used by the package.
         """
         if not exists(FOLDER_CONFIG):
             mkdir(FOLDER_CONFIG)
@@ -79,47 +70,32 @@ class BaseProfile(object):
         if not exists(FOLDER_PROFILE):
             mkdir(FOLDER_PROFILE)
 
-    def initial_commands(self) -> None:
-        """Initial Commands
+    def add_config(self):
         """
-        if self.param:
-            if self.param not in self.PARAM:
-                raise Exception("Invalid parameter: " + self.param + " not exist!")
+        Configuring system settings
 
-            getattr(self, 'param_'+self.param)()
+        Function that configures the basic settings of the
+        operating system that the LinuxProfle package is running.
 
-    def start(self) -> None:
-        """Start
-        """
-        try:
-            self.setup_config()
-            self.load_config()
-        except Exception as error:
-            text_error(value=error.args[0])
-            raise Exception("Not possible to start the basic settings.")
-
-    def setup(self) -> None:
-        """Initial setup
-        """
-        try:
-            self.start()
-            self.initial_commands()
-        except Exception as error:
-            text_error(value=error.args[0])
-            raise Exception("Not possible to install the basic settings.")
-
-    def setup_config(self) -> None:
-        """Add Config
+        Saved in the linux_config.ini configuration file more
+        specifically Hardware and Distribution information.
         """
         config = configparser.ConfigParser()
         config['SYSTEM'] = get_system()
         config['DISTRO'] = get_distro()
-        config['USER'] = self.user
+        config['USER'] = {
+            "email": self.email,
+            "token": self.token
+        }
 
         write_file_ini(path_file=FILE_CONFIG, config=config)
 
     def load_config(self) -> None:
-        """Load Config
+        """
+        Load Config
+
+        Loads basic configuration information for use
+        in the application and internal operations.
         """
         config = configparser.ConfigParser()
         config.read(FILE_CONFIG)
@@ -135,8 +111,24 @@ class BaseProfile(object):
                 new_config = getattr(self, section.lower())
                 new_config.update({key: val})
 
-    def setup_profile(self, profiles: List) -> None:
-        """Add Profile
+    def add_profile(self, profiles: List[dict]) -> None:
+        """
+        Add Profile
+
+        Function that reads a list of profiles and saves
+        default profile settings in linux_profile.ini.
+
+        Parameters
+        ----------
+        profiles: List[dict]
+            Exemple:
+                profiles = [
+                    {
+                        "user_id": 1,
+                        "profile_id": "key",
+                        "id": 1
+                    }
+                ]
         """
         config = configparser.ConfigParser()
         for item in profiles:
@@ -146,12 +138,14 @@ class BaseProfile(object):
         write_file_ini(path_file=FILE_PROFILE, config=config)
 
     def load_profile(self) -> None:
-        """Load Profile
+        """
+        Load Profile
+
+        Load basic information from profiles for use in the
+        application and internal operations.
         """
         config = configparser.ConfigParser()
         config.read(FILE_PROFILE)
-
-        self.profiles = []
 
         for section in config.sections():
             setattr(self, section.lower(), {})
