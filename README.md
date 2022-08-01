@@ -1,4 +1,5 @@
 # linux-profile
+![GitHub Org's stars](https://img.shields.io/github/stars/MyLinuxProfile?label=LinuxProfile&style=flat-square)
 ![GitHub](https://img.shields.io/github/license/MyLinuxProfile/linux-profile?style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/MyLinuxProfile/linux-profile?style=flat-square)
 
