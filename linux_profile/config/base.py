@@ -19,22 +19,31 @@ class ValidationError(Exception):
     """
 
 
-class Config(object):
+class Config():
     """Configuration
     """
 
-    log = logging.getLogger('.config/logs')
+    LOG = logging.getLogger('.config/logs')
 
     def __init__(self,
-                 email: str = None,
-                 token: str = None,
-                 param: str = None):
+                 email: str = '',
+                 token: str = '',
+                 param: str = None,
+                 file_config: str = FILE_CONFIG,
+                 file_profile: str = FILE_PROFILE,
+                 folder_config: str = FOLDER_CONFIG,
+                 folder_profile: str = FOLDER_PROFILE):
         """
         Structure that defines the main variables.
         """
         self.email = email
         self.token = token
         self.param = param
+
+        self.file_config = file_config
+        self.file_profile = file_profile
+        self.folder_config = folder_config
+        self.folder_profile = folder_profile
 
         self.system = dict()
         self.distro = dict()
@@ -64,11 +73,11 @@ class Config(object):
         Checks and creates the structure of configuration
         folders that are used by the package.
         """
-        if not exists(FOLDER_CONFIG):
-            mkdir(FOLDER_CONFIG)
+        if not exists(self.folder_config):
+            mkdir(self.folder_config)
 
-        if not exists(FOLDER_PROFILE):
-            mkdir(FOLDER_PROFILE)
+        if not exists(self.folder_profile):
+            mkdir(self.folder_profile)
 
     def add_config(self):
         """
@@ -88,7 +97,7 @@ class Config(object):
             "token": self.token
         }
 
-        write_file_ini(path_file=FILE_CONFIG, config=config)
+        write_file_ini(path_file=self.file_config, config=config)
 
     def load_config(self) -> None:
         """
@@ -98,7 +107,7 @@ class Config(object):
         in the application and internal operations.
         """
         config = configparser.ConfigParser()
-        config.read(FILE_CONFIG)
+        config.read(self.file_config)
 
         self.distro = None
         self.system = None
@@ -135,7 +144,7 @@ class Config(object):
             item.update({"standard": 0})
             config['PROFILE_' + str(item['id'])] = item
 
-        write_file_ini(path_file=FILE_PROFILE, config=config)
+        write_file_ini(path_file=self.file_profile, config=config)
 
     def load_profile(self) -> None:
         """
@@ -145,7 +154,7 @@ class Config(object):
         application and internal operations.
         """
         config = configparser.ConfigParser()
-        config.read(FILE_PROFILE)
+        config.read(self.file_profile)
 
         for section in config.sections():
             setattr(self, section.lower(), {})
