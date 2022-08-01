@@ -1,5 +1,11 @@
 from json import loads
-from linux_profile.config.base import BaseProfile
+from linux_profile.config.base import Config
+from tests.utils import (
+    FOLDER_CONFIG,
+    FOLDER_PROFILE,
+    FILE_CONFIG,
+    FILE_PROFILE
+)
 from linux_profile.utils.file import (
     get_distro,
     get_system,
@@ -7,17 +13,13 @@ from linux_profile.utils.file import (
 )
 
 
-class Init(BaseProfile):
-    """Start of settings
-    """
-    def param_all(self):
-        """Param All
-        """
-        pass
-
-
 def test_get_system():
-    Init(param='all')
+    Config(
+        file_config=FILE_CONFIG,
+        file_profile=FILE_PROFILE,
+        folder_config=FOLDER_CONFIG,
+        folder_profile=FOLDER_PROFILE
+    )
     system = get_system()
 
     list_system = {
@@ -38,7 +40,12 @@ def test_get_system():
 
 
 def test_get_distro():
-    Init(param='all')
+    Config(
+        file_config=FILE_CONFIG,
+        file_profile=FILE_PROFILE,
+        folder_config=FOLDER_CONFIG,
+        folder_profile=FOLDER_PROFILE
+    )
     distro = get_distro()
 
     list_distro = {

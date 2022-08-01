@@ -9,8 +9,8 @@ class Request(BaseRequest):
         """
         self.url = "http://0.0.0.0:8000/"
 
-start()
-request = Request()
+# start()
+# request = Request()
 
 
 def _test_meke_get():
@@ -33,4 +33,4 @@ def _test_meke_delete():
     assert response.status_code == 200
 
 
-stop()
+# stop()
