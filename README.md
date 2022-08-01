@@ -7,6 +7,7 @@
 # Help
 
 ## Commands
+
 | #      | Command                        | Argument              | Param           |
 |--------|:-------------------------------|:----------------------|:----------------|
 | 01     | ``linux_profile init``         | ``login``, ``create`` |--email --token  |
@@ -32,6 +33,12 @@
 - 05 - Applies computer profile settings based on local information.
   - **Example**: 
     - ``linux_profile apply all``
+
+## Download
+
+| Method  | Command                                                                                                    |
+|-------- |:-----------------------------------------------------------------------------------------------------------|
+| Git     | ``git clone https://github.com/MyLinuxProfile/linux-profile.git ~/.linux_profile --branch master``         |
 
 **RESOURCES**
 - GitHub: https://github.com/MyLinuxProfile/linux-profile-pypi
