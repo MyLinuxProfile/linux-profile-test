@@ -4,6 +4,9 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/MyLinuxProfile/linux-profile?style=flat-square)
 ![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/MyLinuxProfile/linux-profile?style=flat-square)
 
+# Introduction
+Linux Profile is a linux profile management tool.
+
 # Help
 
 ## Commands
