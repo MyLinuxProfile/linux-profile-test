@@ -1,10 +1,10 @@
 import json
 from requests import request, HTTPError
-from linux_profile.config.base import BaseProfile
+from linux_profile.config.base import Config
 from linux_profile.config import URL_API
 
 
-class BaseRequest(BaseProfile):
+class BaseRequest(Config):
     """Base class request
     """
 

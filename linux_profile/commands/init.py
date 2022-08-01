@@ -1,9 +1,9 @@
-from linux_profile.config.base import BaseProfile
 from linux_profile.utils.request import BaseRequest
-from linux_profile.utils.text import text_command, text_question
+from linux_profile.utils.text import text_command
+from linux_profile.config.command import BaseCommand
 
 
-class Init(BaseProfile):
+class Init(BaseCommand):
     """Start of settings
     """
 
@@ -28,7 +28,7 @@ class Init(BaseProfile):
         response = request.make_get()
 
         if response.status_code == 200:
-            self.setup_profile(profiles=response.json())
+            self.add_profile(profiles=response.json())
             self.load_profile()
 
     def create_user(self):

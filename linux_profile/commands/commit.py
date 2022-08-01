@@ -1,8 +1,8 @@
-from linux_profile.config.base import BaseProfile
+from linux_profile.config.command import BaseCommand
 from linux_profile.utils.text import text_command
 
 
-class Commit(BaseProfile):
+class Commit(BaseCommand):
     """Start of settings
     """
     def start(self) -> None:
