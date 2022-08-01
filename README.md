@@ -1,11 +1,16 @@
 # linux-profile
 ![GitHub Org's stars](https://img.shields.io/github/stars/MyLinuxProfile?label=LinuxProfile&style=flat-square)
-![GitHub](https://img.shields.io/github/license/MyLinuxProfile/linux-profile?style=flat-square)
+![GitHub](https://img.shields.io/github/license/MyLinuxProfile/linux-profile?color=black&style=flat-square)
 ![GitHub last commit](https://img.shields.io/github/last-commit/MyLinuxProfile/linux-profile?style=flat-square)
+![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/MyLinuxProfile/linux-profile?style=flat-square)
+
+# Introduction
+Linux Profile is a linux profile management tool.
 
 # Help
 
 ## Commands
+
 | #      | Command                        | Argument              | Param           |
 |--------|:-------------------------------|:----------------------|:----------------|
 | 01     | ``linux_profile init``         | ``login``, ``create`` |--email --token  |
@@ -31,6 +36,12 @@
 - 05 - Applies computer profile settings based on local information.
   - **Example**: 
     - ``linux_profile apply all``
+
+## Download
+
+| Method  | Command                                                                                                    |
+|-------- |:-----------------------------------------------------------------------------------------------------------|
+| Git     | ``git clone https://github.com/MyLinuxProfile/linux-profile.git ~/.linux_profile --branch master``         |
 
 **RESOURCES**
 - GitHub: https://github.com/MyLinuxProfile/linux-profile-pypi
