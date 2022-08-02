@@ -44,7 +44,7 @@ def test_setup():
     test.load_profile()
     
     test.list_profile()
-    test.set_profile(option='3')
+    test.set_profile(option='2')
 
     assert path.isdir(FOLDER_CONFIG) == True
     assert path.isdir(FOLDER_PROFILE) == True
