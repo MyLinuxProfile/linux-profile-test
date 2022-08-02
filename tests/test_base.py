@@ -35,10 +35,9 @@ def test_setup():
         folder_profile=FOLDER_PROFILE
     )
 
-    test.set_folder()
-
-    test.add_config()
-    test.load_config()
+    # test.set_folder()
+    # test.add_config()
+    # test.load_config()
     
     test.add_profile(profiles=profiles)
     test.load_profile()
