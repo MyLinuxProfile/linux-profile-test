@@ -14,8 +14,7 @@ class Pull(BaseCommand):
             self.load_config()
             self.load_profile()
         except Exception as error:
-            print(error)
-            raise Exception("It is not possible to load the basic settings.")
+            raise Exception("It is not possible to load the basic settings.") from error
 
     def param_all(self):
         """Param All
