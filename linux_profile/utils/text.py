@@ -42,12 +42,13 @@ def text_error(value: str):
     """
     print("[bold red]Error: [/bold red]" + value)
 
-def table_options(question: str, first_column: str, options: List):
+def table_options(first_column: str, options: List, question: str = None):
     """Table Options
     """
     console = Console()
-    print('')
-    text_question(value=question)
+    if question:
+        text_question(value=question)
+
     option_action = Table(show_header=True, header_style="white")
     option_action.add_column("#")
     option_action.add_column(first_column)
