@@ -1,3 +1,5 @@
+"""System base"""
+
 import logging
 import configparser
 
@@ -50,23 +52,25 @@ class Config():
         self.folder_config = folder_config
         self.folder_profile = folder_profile
 
-        self.system = dict()
-        self.distro = dict()
-        self.user = dict()
+        self.system = {}
+        self.distro = {}
+        self.user = {}
         self.profiles = []
 
         self.setup()
 
     def setup(self):
         """
-        Set to basic settings
+        Defines the functions that are executed each
+        time the class is instantiated.
         """
         self.set_folder()
         self.start()
 
     def start(self):
         """
-        Start to basic settings
+        Defines functions that are executed separately
+        when the class is instantiated.
         """
         self.add_config()
         self.load_config()
