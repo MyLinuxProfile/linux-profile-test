@@ -5,6 +5,7 @@ from os import mkdir
 from os.path import exists
 from typing import List
 
+from linux_profile.utils.text import table_options
 from linux_profile.utils.file import get_system, get_distro, write_file_ini
 from linux_profile.config import (
     FILE_CONFIG,
@@ -16,6 +17,10 @@ from linux_profile.config import (
 
 class ValidationError(Exception):
     """Raised during the validation process of the config on errors.
+    """
+
+class ProcessingError(Exception):
+    """Returns an exception during the execution of a process.
     """
 
 
@@ -166,3 +171,35 @@ class Config():
 
             if my_dict:
                 self.profiles.append(my_dict)
+
+    def list_profile(self) -> None:
+        """List Profile
+        """
+        options = []
+        for item in self.profiles:
+            options.append(item['profile_id'])
+
+        table_options(
+            question="",
+            first_column="Profile",
+            options=options
+        )
+
+    def set_profile(self, option: int) -> None:
+        """"Set Profile
+        """
+        option = int(option)
+
+        if option > 0 and option <= len(self.profiles):
+            config = configparser.ConfigParser()
+            config.read(self.file_profile)
+
+            for section in config.sections():
+                config[section]['standard'] = '0'
+
+            profile = config.sections()[int(option)-1]
+            config[profile]['standard'] = '1'
+
+            write_file_ini(path_file=self.file_profile, config=config)
+        else:
+            raise ProcessingError()

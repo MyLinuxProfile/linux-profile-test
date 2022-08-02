@@ -1,3 +1,5 @@
+from typing import List
+
 from linux_profile.utils.request import BaseRequest
 from linux_profile.utils.text import text_command
 from linux_profile.config.command import BaseCommand
@@ -33,16 +35,6 @@ class Init(BaseCommand):
 
     def create_user(self):
         """Create User
-        """
-        pass
-
-    def list_profile(self):
-        """List Profile
-        """
-        pass
-
-    def set_profile(self):
-        """"Set Profile
         """
         pass
 
