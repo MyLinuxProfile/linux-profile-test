@@ -1,6 +1,6 @@
 from json import loads
 from linux_profile.config.base import Config
-from tests.utils import (
+from tests import (
     FOLDER_CONFIG,
     FOLDER_PROFILE,
     FILE_CONFIG,
@@ -68,7 +68,7 @@ def test_get_distro():
 
 
 def test_read_file():
-    content = read_file(path_file='tests/utils/test_file', type_file='.json')
+    content = read_file(path_file='tests/x_file', type_file='.json')
     content_json = loads(content)
 
     assert content_json["test_file"] == True

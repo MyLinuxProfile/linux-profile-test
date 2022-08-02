@@ -1,6 +1,6 @@
 from os import path
 from linux_profile.config.base import Config
-from tests.utils import (
+from tests import (
     FOLDER_CONFIG,
     FOLDER_PROFILE,
     FILE_CONFIG,
@@ -36,11 +36,15 @@ def test_setup():
     )
 
     test.set_folder()
+
     test.add_config()
     test.load_config()
-
+    
     test.add_profile(profiles=profiles)
     test.load_profile()
+    
+    test.list_profile()
+    test.set_profile(option='3')
 
     assert path.isdir(FOLDER_CONFIG) == True
     assert path.isdir(FOLDER_PROFILE) == True
