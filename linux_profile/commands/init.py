@@ -1,4 +1,4 @@
-from typing import List
+"""System Command"""
 
 from linux_profile.utils.request import BaseRequest
 from linux_profile.utils.text import text_command
