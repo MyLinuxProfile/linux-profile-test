@@ -12,3 +12,4 @@ class Pull(BaseCommand):
         """Param All
         """
         text_command(value='pull ' + self.param)
+        self.module.pull_profile()

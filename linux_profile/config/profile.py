@@ -6,6 +6,8 @@ from typing import List
 
 from linux_profile.utils.text import table_options
 from linux_profile.utils.file import write_file_ini
+from linux_profile.utils.request import BaseRequest
+
 from linux_profile.config.base import ProcessingError
 from linux_profile.config import FILE_PROFILE
 
@@ -18,9 +20,8 @@ class Profile(object):
         """
         Structure that defines the main variables.
         """
-
         self.file_profile = file_profile
-        self.profiles = []
+        self.load_profile()
 
     def add_profile(self, profiles: List[dict]) -> None:
         """
@@ -55,6 +56,8 @@ class Profile(object):
         Load basic information from profiles for use in the
         application and internal operations.
         """
+        self.profiles = []
+
         config = configparser.ConfigParser()
         config.read(self.file_profile)
 
@@ -100,3 +103,18 @@ class Profile(object):
             write_file_ini(path_file=self.file_profile, config=config)
         else:
             raise ProcessingError()
+
+    def pull_profile(self) -> None:
+        """Pull Profile
+        """
+        request = ProfileRequest()
+
+        if self.profiles:
+            for profile in self.profiles:
+                request.make_get(id=profile['profile_id'])
+
+
+class ProfileRequest(BaseRequest):
+
+    def url(self):
+        self.url = self.path + "profiles"
