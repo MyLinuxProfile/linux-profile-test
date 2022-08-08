@@ -2,14 +2,14 @@
 
 import configparser
 
-from typing import List
+from json import dumps
 
 from linux_profile.utils.text import table_options
-from linux_profile.utils.file import write_file_ini
+from linux_profile.utils.file import write_file_ini, write_file
 from linux_profile.utils.request import BaseRequest
 
 from linux_profile.config.base import ProcessingError
-from linux_profile.config import FILE_PROFILE
+from linux_profile.config import FOLDER_PROFILE, FILE_PROFILE
 
 
 class Profile(object):
@@ -107,8 +107,12 @@ class Profile(object):
                 response = request.make_get(id=profile['profile_id'])
 
                 if response.status_code == 200:
-                    response.json()
-
+                    _file = response.json()
+                    write_file(
+                        content=dumps(_file),
+                        path_file=FOLDER_PROFILE+'/'+_file['_id'],
+                        type_file='.json'
+                    )
 
 class InitRequest(BaseRequest):
 
