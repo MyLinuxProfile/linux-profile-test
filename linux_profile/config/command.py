@@ -1,6 +1,7 @@
 """System command"""
 
 from linux_profile.config.base import Config
+from linux_profile.config.profile import Profile
 
 
 class BaseCommand(Config):
@@ -8,12 +9,16 @@ class BaseCommand(Config):
     """
     PARAM = ['all']
 
-    def start(self):
-        """Start to basic settings
+    def start(self) -> None:
+        """Start
         """
-        self.add_config()
-        self.load_config()
-        self.initial_commands()
+        try:
+            self.module = Profile()
+
+            self.load_config()
+            self.initial_commands()
+        except Exception as error:
+            raise Exception("It is not possible to load the basic settings.") from error
 
     def initial_commands(self) -> None:
         """
