@@ -29,28 +29,12 @@ class Init(BaseCommand):
         """Param Login
         """
         text_command(value='init ' + self.param)
-        self.login_user()
+        self.module.add_profile()
 
     def param_create(self):
         """Param Create
         """
         text_command(value='init ' + self.param)
-        self.create_user()
-
-    def login_user(self):
-        """Login User
-        """
-        request = InitRequest()
-        response = request.make_get()
-
-        if response.status_code == 200:
-            self.module.add_profile(profiles=response.json())
-            self.module.load_profile()
-
-    def create_user(self):
-        """Create User
-        """
-        pass
 
 
 class InitRequest(BaseRequest):

@@ -23,31 +23,24 @@ class Profile(object):
         self.file_profile = file_profile
         self.load_profile()
 
-    def add_profile(self, profiles: List[dict]) -> None:
+    def add_profile(self) -> None:
         """
         Add Profile
 
         Function that reads a list of profiles and saves
         default profile settings in linux_profile.ini.
-
-        Parameters
-        ----------
-        profiles: List[dict]
-            Exemple:
-                profiles = [
-                    {
-                        "user_id": 1,
-                        "profile_id": "key",
-                        "id": 1
-                    }
-                ]
         """
-        config = configparser.ConfigParser()
-        for item in profiles:
-            item.update({"standard": 0})
-            config['PROFILE_' + str(item['id'])] = item
+        request = InitRequest()
+        response = request.make_get()
 
-        write_file_ini(path_file=self.file_profile, config=config)
+        if response.status_code == 200:
+            config = configparser.ConfigParser()
+
+            for item in response.json():
+                item.update({"standard": 0})
+                config['PROFILE_' + str(item['id'])] = item
+
+            write_file_ini(path_file=self.file_profile, config=config)
 
     def load_profile(self) -> None:
         """
@@ -111,8 +104,16 @@ class Profile(object):
 
         if self.profiles:
             for profile in self.profiles:
-                request.make_get(id=profile['profile_id'])
+                response = request.make_get(id=profile['profile_id'])
 
+                if response.status_code == 200:
+                    response.json()
+
+
+class InitRequest(BaseRequest):
+
+    def url(self):
+        self.url = self.path + "sync_profiles"
 
 class ProfileRequest(BaseRequest):
 
