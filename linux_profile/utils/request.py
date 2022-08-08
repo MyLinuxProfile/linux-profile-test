@@ -69,9 +69,19 @@ class BaseRequest(Config):
 
     def make_get(self,
                  params: dict = {},
-                 url: str = None) -> request:
+                 url: str = None,
+                 id: str = None) -> request:
         """Make GET
         """
+        if not url:
+            url = self.url
+
+        if id:
+            url = "{url}/{id}".format(
+                url=url,
+                id=id
+            )
+
         result = self.make_request(
             method='GET',
             params=params,
