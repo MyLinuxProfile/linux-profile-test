@@ -40,6 +40,11 @@ def get_content(path_file: str, separator: str):
     return my_info
 
 
+def write_file(content: str, path_file: str, type_file: str = '') -> str:
+    with open(path_file + type_file, "w") as outfile:
+        outfile.write(content)
+
+
 def read_file(path_file: str, type_file: str = '') -> str:
     with open(path_file + type_file, 'r', encoding='utf8') as content:
         content = content.read()
