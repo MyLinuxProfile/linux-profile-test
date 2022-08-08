@@ -13,6 +13,18 @@ class Init(BaseCommand):
 
     PARAM = ['login', 'create']
 
+    def start(self) -> None:
+        """Start
+        """
+        try:
+            self.module = Profile()
+
+            self.add_config()
+            self.load_config()
+            self.initial_commands()
+        except Exception as error:
+            raise Exception("It is not possible to load the basic settings.") from error
+
     def param_login(self):
         """Param Login
         """
@@ -32,9 +44,8 @@ class Init(BaseCommand):
         response = request.make_get()
 
         if response.status_code == 200:
-            module = Profile()
-            module.add_profile(profiles=response.json())
-            module.load_profile()
+            self.module.add_profile(profiles=response.json())
+            self.module.load_profile()
 
     def create_user(self):
         """Create User
