@@ -3,8 +3,7 @@ from linux_profile.config.base import Config
 from tests import (
     FOLDER_CONFIG,
     FOLDER_PROFILE,
-    FILE_CONFIG,
-    FILE_PROFILE
+    FILE_CONFIG
 )
 from linux_profile.utils.file import (
     get_distro,
@@ -16,7 +15,6 @@ from linux_profile.utils.file import (
 def test_get_system():
     Config(
         file_config=FILE_CONFIG,
-        file_profile=FILE_PROFILE,
         folder_config=FOLDER_CONFIG,
         folder_profile=FOLDER_PROFILE
     )
@@ -42,7 +40,6 @@ def test_get_system():
 def test_get_distro():
     Config(
         file_config=FILE_CONFIG,
-        file_profile=FILE_PROFILE,
         folder_config=FOLDER_CONFIG,
         folder_profile=FOLDER_PROFILE
     )
