@@ -5,13 +5,10 @@ import configparser
 
 from os import mkdir
 from os.path import exists
-from typing import List
 
-from linux_profile.utils.text import table_options
 from linux_profile.utils.file import get_system, get_distro, write_file_ini
 from linux_profile.config import (
     FILE_CONFIG,
-    FILE_PROFILE,
     FOLDER_CONFIG,
     FOLDER_PROFILE
 )
@@ -26,7 +23,7 @@ class ProcessingError(Exception):
     """
 
 
-class Config():
+class Config(object):
     """Configuration
     """
 
@@ -37,7 +34,6 @@ class Config():
                  token: str = '',
                  param: str = None,
                  file_config: str = FILE_CONFIG,
-                 file_profile: str = FILE_PROFILE,
                  folder_config: str = FOLDER_CONFIG,
                  folder_profile: str = FOLDER_PROFILE):
         """
@@ -48,14 +44,12 @@ class Config():
         self.param = param
 
         self.file_config = file_config
-        self.file_profile = file_profile
         self.folder_config = folder_config
         self.folder_profile = folder_profile
 
         self.system = {}
         self.distro = {}
         self.user = {}
-        self.profiles = []
 
         self.setup()
 
@@ -128,82 +122,3 @@ class Config():
             for key, val in config.items(section):
                 new_config = getattr(self, section.lower())
                 new_config.update({key: val})
-
-    def add_profile(self, profiles: List[dict]) -> None:
-        """
-        Add Profile
-
-        Function that reads a list of profiles and saves
-        default profile settings in linux_profile.ini.
-
-        Parameters
-        ----------
-        profiles: List[dict]
-            Exemple:
-                profiles = [
-                    {
-                        "user_id": 1,
-                        "profile_id": "key",
-                        "id": 1
-                    }
-                ]
-        """
-        config = configparser.ConfigParser()
-        for item in profiles:
-            item.update({"standard": 0})
-            config['PROFILE_' + str(item['id'])] = item
-
-        write_file_ini(path_file=self.file_profile, config=config)
-
-    def load_profile(self) -> None:
-        """
-        Load Profile
-
-        Load basic information from profiles for use in the
-        application and internal operations.
-        """
-        config = configparser.ConfigParser()
-        config.read(self.file_profile)
-
-        for section in config.sections():
-            setattr(self, section.lower(), {})
-
-            my_dict = {}
-            for key, val in config.items(section):
-                if section.find('PROFILE_') >= 0:
-                    my_dict.update({key: val})
-
-            if my_dict:
-                self.profiles.append(my_dict)
-
-    def list_profile(self) -> None:
-        """List Profile
-        """
-        options = []
-        for item in self.profiles:
-            options.append(item['profile_id'])
-
-        table_options(
-            question="",
-            first_column="Profile",
-            options=options
-        )
-
-    def set_profile(self, option: int) -> None:
-        """"Set Profile
-        """
-        option = int(option)
-
-        if option > 0 and option <= len(self.profiles):
-            config = configparser.ConfigParser()
-            config.read(self.file_profile)
-
-            for section in config.sections():
-                config[section]['standard'] = '0'
-
-            profile = config.sections()[int(option)-1]
-            config[profile]['standard'] = '1'
-
-            write_file_ini(path_file=self.file_profile, config=config)
-        else:
-            raise ProcessingError()
