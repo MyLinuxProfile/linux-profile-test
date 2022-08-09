@@ -44,5 +44,5 @@ Linux Profile is a linux profile management tool.
 | Git     | ``git clone https://github.com/MyLinuxProfile/linux-profile.git ~/.linux_profile --branch master``         |
 
 **RESOURCES**
-- GitHub: https://github.com/MyLinuxProfile/linux-profile-pypi
+- GitHub: https://github.com/MyLinuxProfile/linux-profile
 - Docs:   https://linuxprofile.com
