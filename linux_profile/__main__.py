@@ -1,7 +1,7 @@
 import typer
 
 from rich import print
-from linux_profile.commands import Init, Push, Pull, Commit, Apply
+from linux_profile.commands import Init, Push, Pull, Commit, Apply, Add
 from linux_profile.utils.text import Text, text_error
 
 app = typer.Typer(help="Awesome CLI prifile manager.")
@@ -25,6 +25,14 @@ def init(
 def pull(param: str):
     try:
         Pull(param=param)
+    except Exception as error:
+        text_error(value=error.args[0])
+
+
+@app.command()
+def add(param: str):
+    try:
+        Add(param=param)
     except Exception as error:
         text_error(value=error.args[0])
 
