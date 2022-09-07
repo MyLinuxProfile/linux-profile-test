@@ -7,6 +7,23 @@
 # Introduction
 Linux Profile is a linux profile management tool.
 
+
+### Characteristics and objectives for the project:
+- Saving your current plasma customization
+    - Theme
+    - Window decoration
+    - Colors
+    - Icons
+    - Wallpapers
+    - Layout disposition
+    - Widgets
+- Saving configurations
+    - Alias
+    - Scripts
+    - Packages
+- Save and restore your latte-dock customization per save
+- Explort and import customizations. For transfer to another computer or backup them.
+
 # Help
 
 ## Commands
